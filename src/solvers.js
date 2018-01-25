@@ -15,94 +15,28 @@
 window.findNRooksSolution = function(n) {
   var solution = []; //fixme
   
-  // Index
-  var index = 0;
+
   
-  var innerArray = []; //--> ex. n=3 /---> [0,0,0]
-  
-  // Build Default Inner Array
-  for (var k = 0; k < n; k++) {
-    innerArray.push(0);
-  }
-  
-  
-  // Iterate through for n times (n = amount of times to push)
+  // Creates a Board (n x n) (Filled with 0s)
   for (var i = 0; i < n; i++) {
-    innerArray[index] = 1;
-    solution.push(innerArray);
-    index ++;
+    // rowIndexArray is array at solution index
+    var rowIndexArray = [];
+    for (var j = 0; j < n; j++) {
+      rowIndexArray[j] = 0;
+    }
+    solution[i] = rowIndexArray;
   }
-  
-  
-  
-  
-  if (!this.hasAnyRooksConflicts) {
-    solution = false;
-  } else {
-    solution = true;
+  // Reassigns 0 to 1 in a diagonal
+  for (var k = 0; k < n; k++) {
+    for (var l = 0; l < n; l++) {
+      if (k === l) {
+        solution[k][l] = 1;
+      }
+    }
   }
-  
   return solution;
   
   // this.hasAnyRooksConflicts
-  
-  
-  
-  
-  
-  
-  
-  // // Construct Board
-  // for (var k = 0; k < n; k++) {
-  //   solution.push([]);
-  // }
-  
-  // return solution;
-  
-  // //---------
-  // //var Board = big array
-  // //rows Board[0], Board[1],....Board[n]
-  // //column all same i's 
-  // // n = 4
-
-  // // There can only be one "1" per array. At the index of that array, other arrays must = "0"
-  // //Row: there can only be 1 per array
-  // //Column: there can only be 1 per specified index (for all i=0)
-
-  // // Total Solutions
-  
-  
-  // var totalSolutions = 0;
-
-  // // Search Board[n] for Mega Array
-  // for (var i = 0; i < n; i++) {
-  //   // Iterate through the first array
-  //   for (var j = 0; j < solution[i].length; j++) {
-  //     var total = 0;
-
-  //     // Find the value within the first sub array
-  //     if (solution[i][j] === 1) {
-  //       total++;
-  //     }
-  //   }
-    
-  //   // If the value only exists once, return true
-  //   if (total <= 1) {
-  //     return true;
-  //     totalSolutions ++;
-      
-  //   } else {
-  //     return false;
-      
-  //   }
-
-  // }
-
-
-  // Search if the value exists at the same index for the rest of the arrays 
-
-
-
 
   console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
   return solution;
@@ -110,15 +44,116 @@ window.findNRooksSolution = function(n) {
 
 // return the number of nxn chessboards that exist, with n rooks placed such that none of them can attack each other
 window.countNRooksSolutions = function(n) {
-  var solutionCount = undefined; //fixme
+  var solutionCount = 0; //fixme
+
+  var letsFactorial = function(num) {
+
+    if (num < 0) {
+      return -1;
+    } else if (num === 0) {
+      return 1;
+    } else {
+      return (num * letsFactorial(num - 1));
+    }
+  };
+
+  solutionCount = letsFactorial(n);
+
+  return solutionCount;
+
+  
+
+  // var rookCount = 0;
+  // var startIndex = 0;
+  // var traverseIndex = 0;
+
+  // //First Rook Placement!!!
+  // // Iterate through the board
+  // for (var i = 0; i < this.rows().length; i++) {
+
+  //   // Iterate through the first array: find all solutions at each index: 0 --> n
+  //   for (var j = startIndex; j < this.rowIndex().length; j++) {
+  //     // Start at rowIndex[i]
+    
+  //     // Check for Rook conflicts
+  //     // if no conflict, toggle to 1 --> rookCount++
+  //     if (this.hasAnyRooksConflicts(this.rowIndex()[i])) {
+  //       // Place Rook
+  //       this.togglePiece(this.rowIndex()[i]);
+  //       // Add 1 to Rook count
+  //       rookCount += 1;
+  //     }
+
+
+  //     // Need to Traverse
+
+
+
+  //   }
+
+
+    
+
+  //} 
+      // Check for Rook conflicts
+        // if no conflict, toggle to 1 --> rookCount++
+        
+    //Run through whole board after first Rook placement!!!
+    // For each square, check for Rook conflicts
+        //if no conflict, toggle to 1 --> rookCount++
+
+        //else, keep moving
+      
+      
+        //Condition: if n have been placed (rookCount = n);
+        //solution++
+
+
+
+  //this.hasAnyRooksConflicts();
+
+
+
 
   console.log('Number of solutions for ' + n + ' rooks:', solutionCount);
-  return solutionCount;
+  
 };
 
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n queens placed such that none of them can attack each other
 window.findNQueensSolution = function(n) {
-  var solution = undefined; //fixme
+  var solution = []; //fixme
+
+  // Creates a Board (n x n) (Filled with 0s)
+  for (var i = 0; i < n; i++) {
+    // rowIndexArray is array at solution index
+    var rowIndexArray = [];
+    for (var j = 0; j < n; j++) {
+      rowIndexArray[j] = 0;
+    }
+    solution[i] = rowIndexArray;
+  }
+
+  // this.hasAnyQueenConflictsOn();
+
+
+  // // Reassigns 0 to 1 in a diagonal
+  // for (var k = 0; k < n; k++) {
+  //   for (var l = 0; l < n; l++) {
+  //     if (k === l) {
+  //       solution[k][l] = 1;
+  //     }
+  //   }
+  // }
+  return solution;
+  
+
+
+
+
+
+
+
+
 
   console.log('Single solution for ' + n + ' queens:', JSON.stringify(solution));
   return solution;
