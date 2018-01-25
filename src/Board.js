@@ -277,6 +277,9 @@
       // var innerIndex = 0;
       
       // Iterate through the Mega Array
+      var count = 0;
+      var across = 0;
+      
       
       for (var i = 0; i < this.rows()[0].length; i++) {
         if (this.hasMajorDiagonalConflictAt(i)) {
@@ -284,23 +287,37 @@
         }
       }
       
+      for (var j = 1; j < this.rows().length; j++) {
+        if (this.rows()[j][across] !== undefined) {
+          // 
+          count += this.rows()[j][across];
+          across++;
+        }
+      }
+      
+      if (count > 1) {
+        conflict = true;
+      }
+      
+      
+      
  
       
       
-      for (var i = 0; i < this.rows().length; i++) {
+      // for (var i = 0; i < this.rows().length; i++) {
         
-        // Iterate through the Inner array
-        for (var j = 0; j < this.rows()[i].length; j++) {
-          // Check if Array values pass the "hasMajorDiagonalConflictAt" test
-          if (this.hasMajorDiagonalConflictAt([i]) === true) {
-            conflict = true;
-          }
-        }
+      //   // Iterate through the Inner array
+      //   for (var j = 0; j < this.rows()[i].length; j++) {
+      //     // Check if Array values pass the "hasMajorDiagonalConflictAt" test
+      //     if (this.hasMajorDiagonalConflictAt([i]) === true) {
+      //       conflict = true;
+      //     }
+      //   }
         
-        // Add 1 to the Outer Index Array value
-        // outerIndex += 1;
+      //   // Add 1 to the Outer Index Array value
+      //   // outerIndex += 1;
         
-      }      
+      // }      
       return conflict;
       
       
