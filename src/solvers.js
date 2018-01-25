@@ -19,12 +19,11 @@ window.findNRooksSolution = function(n) {
   var index = 0;
   
   var innerArray = []; //--> ex. n=3 /---> [0,0,0]
+  
   // Build Default Inner Array
   for (var k = 0; k < n; k++) {
     innerArray.push(0);
   }
-  
-  
   
   
   // Iterate through for n times (n = amount of times to push)
@@ -36,6 +35,16 @@ window.findNRooksSolution = function(n) {
   
   
   
+  
+  if (!this.hasAnyRooksConflicts) {
+    solution = false;
+  } else {
+    solution = true;
+  }
+  
+  return solution;
+  
+  // this.hasAnyRooksConflicts
   
   
   
